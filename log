@@ -10,3 +10,20 @@ Fri 12 May 2023 07:24:44 PM UTC:
  tests:  2|2
 total_score: 20/70
 dbc8912
+Fri 12 May 2023 08:14:01 PM UTC: 
+ heap.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+In file included from test.c:4:
+heap.c: In function ‘heap_push’:
+heap.c:28:5: error: expected expression before ‘int’
+   28 |     int newCapac = ((pq->capac) * 2) + 1;
+      |     ^~~
+heap.c:27:3: error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
+   27 |   if(pq->size == pq->capac)
+      |   ^~
+heap.c:29:5: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   29 |     pq->heapArray = realloc(pq->heapArray, ((((pq->capac)*2) + 1) * sizeof(heapElem)));
+      |     ^~
+cc1: all warnings being treated as errors
+Compilation failed
+4afc435
