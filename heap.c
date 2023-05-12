@@ -16,6 +16,12 @@ typedef struct Heap{
   int capac;
 } Heap;
 
+void swap(heapElem *a, heapElem *b){
+  heapElem aux = *a;
+  *a = *b;
+  *b = aux;
+  return;
+}
 
 void* heap_top(Heap* pq){
   if (pq == NULL || pq->size == 0)return NULL;
@@ -31,8 +37,16 @@ void heap_push(Heap* pq, void* data, int priority){
     pq->capac = newCapac;
   }
 
-  
-  
+  int index = pq->size;
+  pq->heapArray[index].data = data;
+  pq->heapArray[index].priority = priority;
+  pq->size++;
+
+  while(index > 0 && pq->heapArray[(index - 1) / 2].priority < pq->heapArray[index].priority){
+    swap(&pq->heapArray[(index - 1) / 2], &pq->heapArray[index]);
+    index = (index - 1) / 2;
+  }
+  return;
 }
 
 
