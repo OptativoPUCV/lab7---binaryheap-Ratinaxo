@@ -24,11 +24,14 @@ void* heap_top(Heap* pq){
 
 void heap_push(Heap* pq, void* data, int priority){
   if (pq == NULL || pq->size == 0)return;
-  if(pq->size == pq->capac)
-    int newCapac = ((pq->capac) * 2) + 1;
-    pq->heapArray = realloc(pq->heapArray, ((((pq->capac)*2) + 1) * sizeof(heapElem)));
+  if(pq->size == pq->capac){
+    int newCapac = (pq->capac * 2) + 1;
+    pq->heapArray = realloc(pq->heapArray, (newCapac * sizeof(heapElem)));
+    if(pq->heapArray == NULL)return;
+    pq->capac = newCapac;
+  }
 
-  if(pq->heapArray == NULL)return;
+  
   
 }
 
